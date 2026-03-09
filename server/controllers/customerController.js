@@ -31,7 +31,7 @@ export const getCustomers = async (req, res) => {
   }
 };
 
-exports.getCustomerById = async (req, res) => {
+export const getCustomerById = async (req, res) => {
   try {
     const customer = await Prediction.findById(req.params.id).lean();
     if (!customer) {

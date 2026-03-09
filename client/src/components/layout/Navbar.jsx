@@ -1,6 +1,6 @@
 import { Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { Brain, UploadCloud, LayoutDashboard, Github } from 'lucide-react'
+import { UploadCloud, LayoutDashboard } from 'lucide-react'
 
 export default function Navbar() {
   const location = useLocation()
@@ -25,15 +25,9 @@ export default function Navbar() {
       }}>
         {/* Logo */}
         <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
-          <div style={{
-            width: 32, height: 32, borderRadius: 8,
-            background: 'linear-gradient(135deg, #4f8ef7 0%, #7c3aed 100%)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-          }}>
-            <Brain size={18} color="white" />
-          </div>
+          <img src="/churn_logo.png" alt="CRISP" style={{ height: 32, width: 32, borderRadius: '50%', objectFit: 'cover' }} />
           <span style={{ color: 'var(--text-primary)', fontWeight: 600, fontSize: '15px', letterSpacing: '-0.3px' }}>
-            ChurnIntel
+            CRISP
           </span>
         </Link>
 
@@ -58,19 +52,6 @@ export default function Navbar() {
               {icon}{label}
             </Link>
           ))}
-          <a
-            href="https://github.com"
-            target="_blank"
-            rel="noreferrer"
-            style={{
-              display: 'flex', alignItems: 'center', gap: '6px',
-              padding: '7px 14px', borderRadius: 8,
-              textDecoration: 'none', fontSize: '14px',
-              color: 'var(--text-secondary)', marginLeft: '4px',
-            }}
-          > 
-            <Github size={15} />
-          </a>
         </div>
       </div>
     </motion.nav>

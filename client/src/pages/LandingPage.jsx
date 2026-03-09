@@ -74,7 +74,7 @@ export default function LandingPage() {
                 fontSize: '13px', color: 'var(--accent)',
                 fontWeight: 500,
               }}>
-                <Brain size={13} /> AI-Powered Retention Intelligence
+                <Brain size={13} />Customer Retention Intelligence
               </span>
             </motion.div>
 
@@ -86,13 +86,13 @@ export default function LandingPage() {
               color: 'var(--text-primary)',
               marginBottom: '24px',
             }}>
-              Stop losing customers.<br />
+              Know who will leave<br />
               <span style={{
                 background: 'linear-gradient(135deg, #4f8ef7 0%, #7c6ff7 50%, #a855f7 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
               }}>
-                Start predicting churn.
+               before they do.
               </span>
             </motion.h1>
 
@@ -292,7 +292,7 @@ export default function LandingPage() {
           borderTop: '1px solid var(--border)', padding: '24px',
           textAlign: 'center', color: 'var(--text-muted)', fontSize: '13px',
         }}>
-          ChurnIntel — Customer Retention Intelligence Platform
+          CRISP — Customer Retention Intelligence Platform
         </footer>
       </div>
     </div>

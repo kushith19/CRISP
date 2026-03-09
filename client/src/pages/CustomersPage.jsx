@@ -66,15 +66,19 @@ function CustomerDetailPanel({ customer, onClose }) {
 
   return (
     <motion.div
-      initial={{ opacity: 0, x: 40 }}
+      initial={{ opacity: 0, x: 340 }}
       animate={{ opacity: 1, x: 0 }}
-      exit={{ opacity: 0, x: 40 }}
+      exit={{ opacity: 0, x: 340 }}
+      transition={{ type: 'spring', damping: 28, stiffness: 300 }}
       style={{
         width: 340, flexShrink: 0,
         borderLeft: '1px solid var(--border)',
         background: 'var(--bg-secondary)',
         padding: '24px', overflowY: 'auto',
-        height: '100%',
+        position: 'absolute', top: 16, right: 16, bottom: 16,
+        zIndex: 10,
+        borderRadius: '16px',
+        boxShadow: '-4px 0 24px rgba(0,0,0,0.3)',
       }}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
@@ -104,8 +108,8 @@ function CustomerDetailPanel({ customer, onClose }) {
         {[
           ['Contract', f.Contract],
           ['Tenure', `${f.tenure} months`],
-          ['Monthly Charges', `$${f.MonthlyCharges}`],
-          ['Total Charges', `$${f.TotalCharges}`],
+          ['Monthly Charges', `${f.MonthlyCharges}`],
+          ['Total Charges', `${f.TotalCharges}`],
           ['Internet Service', f.InternetService],
           ['Payment Method', f.PaymentMethod],
           ['Senior Citizen', f.SeniorCitizen ? 'Yes' : 'No'],
@@ -172,7 +176,7 @@ export default function CustomersPage() {
 
   return (
     <DashboardLayout>
-      <div style={{ display: 'flex', height: 'calc(100vh - 64px)', overflow: 'hidden', margin: '-32px' }}>
+      <div style={{ display: 'flex', position: 'relative', height: 'calc(100vh)', overflow: 'hidden', margin: '-32px' }}>
         {/* Main table */}
         <div style={{ flex: 1, overflow: 'auto', padding: '32px' }}>
           {/* Header */}
@@ -182,7 +186,7 @@ export default function CustomersPage() {
                 Customer Explorer
               </h1>
               <p style={{ color: 'var(--text-muted)', fontSize: '14px' }}>
-                {filtered.length} customers · click a row to inspect
+               click a row to inspect
               </p>
             </div>
 

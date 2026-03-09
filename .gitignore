@@ -5,4 +5,7 @@ dist/
 build/
 .DS_Store
 uploads/
-*.csv
+*.csvuploads/*.csv
+uploads/dataset-*
+uploads/*.csv
+uploads/dataset-*

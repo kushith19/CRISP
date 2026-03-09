@@ -7,6 +7,13 @@ const predictionSchema = new mongoose.Schema({
   prediction: { type: Number },              // 0 or 1
   churnProbability: { type: Number },        // 0.0 - 1.0
   riskLevel: { type: String, enum: ['High', 'Medium', 'Low'] },
+  shapExplanation: [
+    {
+      feature:   { type: String },
+      shapValue: { type: Number },
+      direction: { type: String },
+    }
+    ],
 }, { timestamps: true });
 
 predictionSchema.index({ riskLevel: 1 });

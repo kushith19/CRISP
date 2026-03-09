@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom'
-import { LayoutDashboard, Users, UploadCloud, Settings, Brain } from 'lucide-react'
+import { LayoutDashboard, Users, UploadCloud, Settings } from 'lucide-react'
 
 const navItems = [
   { to: '/dashboard', icon: <LayoutDashboard size={17} />, label: 'Dashboard' },
@@ -21,20 +21,15 @@ export default function Sidebar() {
       padding: '0 12px',
     }}>
       {/* Logo */}
-      <div style={{
+      <Link to="/" style={{
         height: 60, display: 'flex', alignItems: 'center',
         gap: '10px', padding: '0 8px',
         borderBottom: '1px solid var(--border)',
+        textDecoration: 'none', color: 'inherit',
       }}>
-        <div style={{
-          width: 28, height: 28, borderRadius: 7,
-          background: 'linear-gradient(135deg, #4f8ef7 0%, #7c3aed 100%)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-        }}>
-          <Brain size={15} color="white" />
-        </div>
-        <span style={{ fontSize: '14px', fontWeight: 600, letterSpacing: '-0.3px' }}>ChurnIntel</span>
-      </div>
+        <img src="/churn_logo.png" alt="CRISP" style={{ height: 28, width: 28, borderRadius: '50%', objectFit: 'cover' }} />
+        <span style={{ fontSize: '14px', fontWeight: 600, letterSpacing: '-0.3px' }}>CRISP</span>
+      </Link>
 
       {/* Nav */}
       <nav style={{ paddingTop: '16px', flex: 1 }}>
@@ -65,7 +60,7 @@ export default function Sidebar() {
         padding: '16px 8px', borderTop: '1px solid var(--border)',
         fontSize: '11px', color: 'var(--text-muted)',
       }}>
-        v1.0.0 · ML Service
+        CRISP
         <span style={{
           display: 'inline-block', width: 7, height: 7, borderRadius: '50%',
           background: 'var(--success)', marginLeft: '6px',
