@@ -1,5 +1,4 @@
 import fs from "fs";
-import path from "path";
 import { predictBatch } from "../services/mlService.js";
 import Dataset from "../models/Dataset.js";
 import Prediction from "../models/Prediction.js";
@@ -12,36 +11,35 @@ export const uploadDataset = async (req, res) => {
 
     const filePath = req.file.path;
 
-    // Call ML service with the CSV
+    // Call ML service
     const predictions = await predictBatch(filePath);
 
     // Clean up uploaded file
     fs.unlinkSync(filePath);
 
-    // Clear previous data so dashboard only shows the latest upload
+    // Clear previous data — dashboard always shows latest upload only
     await Prediction.deleteMany({});
     await Dataset.deleteMany({});
 
-    // Save dataset metadata
+    // Save dataset metadata — no insightCache yet, that comes after
     const dataset = await Dataset.create({
-      filename: req.file.originalname,
+      filename:      req.file.originalname,
       customerCount: predictions.length,
-      uploadDate: new Date(),
+      uploadDate:    new Date(),
     });
 
-    // Save predictions in bulk
+    // Save predictions
     const predictionDocs = predictions.map((pred, index) => {
-      // ML service returns flat objects – separate ML outputs from customer features
-      const { prediction, churn_probability, risk_level, ...features } = pred;
+      const { prediction, churn_probability, risk_level, shap_explanation, ...features } = pred;
       return {
-        datasetId: dataset._id,
-        customerIndex: index,
+        datasetId:        dataset._id,
+        customerIndex:    index,
         customerFeatures: features,
-        prediction: prediction,
+        prediction:       prediction,
         churnProbability: churn_probability,
-        riskLevel: risk_level,
-        shapExplanation: (pred.shap_explanation ?? []).map((s) => ({
-          feature: s.feature,
+        riskLevel:        risk_level,
+        shapExplanation:  (shap_explanation ?? []).map((s) => ({
+          feature:   s.feature,
           shapValue: s.shap_value,
           direction: s.direction,
         })),
@@ -50,11 +48,14 @@ export const uploadDataset = async (req, res) => {
 
     await Prediction.insertMany(predictionDocs);
 
+    // Return immediately — insight generation happens separately
+    // triggered by UploadPage after this response
     res.status(201).json({
-      message: "Dataset processed successfully",
-      datasetId: dataset._id,
+      message:       "Dataset processed successfully",
+      datasetId:     dataset._id,
       customerCount: predictions.length,
     });
+
   } catch (error) {
     console.error("Upload error:", error.message);
     res.status(500).json({ error: error.message });

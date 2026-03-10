@@ -8,6 +8,7 @@ import connectDB from './config/db.js';
 import uploadRoutes from './routes/uploadRoutes.js';
 import analyticsRoutes from './routes/analyticsRoutes.js';
 import customerRoutes from './routes/customerRoutes.js';
+import insightRoutes from './routes/insightRoutes.js';
 
 const app = express();
 
@@ -23,9 +24,11 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 
+
 app.use('/api', uploadRoutes);
 app.use('/api', analyticsRoutes);
 app.use('/api', customerRoutes);
+app.use('/api/insight', insightRoutes);
 
 
 app.get('/health', (req, res) => {

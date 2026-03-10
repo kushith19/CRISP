@@ -9,6 +9,7 @@ import PaymentChart from '../components/charts/PaymentChart'
 import TenureLineChart from '../components/charts/TenureLineChart'
 import MonthlyChargesScatter from '../components/charts/ScatterChart'
 import { useAnalytics } from '../hooks/useAnalytics'
+import InsightPanel from '../components/ui/InsightPanel'
 
 // Demo data for when no dataset is uploaded yet
 const DEMO = {
@@ -128,6 +129,10 @@ export default function DashboardPage() {
             color="var(--success)"
           />
         </div>
+
+        <div style={{ marginBottom: '24px' }}>
+          <InsightPanel />
+        </div>  
 
         {/* Charts Grid */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px', marginBottom: '12px' }}>
