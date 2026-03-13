@@ -11,17 +11,17 @@ export const uploadDataset = async (req, res) => {
 
     const filePath = req.file.path;
 
-    // Call ML service
+  
     const predictions = await predictBatch(filePath);
 
-    // Clean up uploaded file
+    
     fs.unlinkSync(filePath);
 
-    // Clear previous data — dashboard always shows latest upload only
+    
     await Prediction.deleteMany({});
     await Dataset.deleteMany({});
 
-    // Save dataset metadata — no insightCache yet, that comes after
+   
     const dataset = await Dataset.create({
       filename:      req.file.originalname,
       customerCount: predictions.length,
@@ -48,8 +48,6 @@ export const uploadDataset = async (req, res) => {
 
     await Prediction.insertMany(predictionDocs);
 
-    // Return immediately — insight generation happens separately
-    // triggered by UploadPage after this response
     res.status(201).json({
       message:       "Dataset processed successfully",
       datasetId:     dataset._id,

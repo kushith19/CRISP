@@ -199,10 +199,8 @@ export default function InsightPanel() {
       style={{
         borderRadius: "12px",
         overflow: "hidden",
-        border: "1px solid rgba(168,85,247,0.3)",
-        background:
-          "linear-gradient(135deg, rgba(168,85,247,0.03) 0%, rgba(124,58,237,0.03) 100%)",
-        boxShadow: "0 4px 20px -2px rgba(168,85,247,0.05)",
+        border: "1px solid var(--border)",
+        background: "var(--bg-card)",
       }}
     >
       <div
@@ -212,7 +210,7 @@ export default function InsightPanel() {
           alignItems: "center",
           justifyContent: "space-between",
           background: "transparent",
-          borderBottom: expanded ? "1px solid rgba(168,85,247,0.15)" : "none",
+          borderBottom: expanded ? "1px solid var(--border)" : "none",
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
@@ -221,12 +219,12 @@ export default function InsightPanel() {
               width: 32,
               height: 32,
               borderRadius: "6px",
-              background: "rgba(168,85,247,0.15)",
-              border: "1px solid rgba(168,85,247,0.3)",
+              background: "rgba(79,142,247,0.1)",
+              border: "1px solid rgba(79,142,247,0.2)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              color: "#a855f7",
+              color: "#4f8ef7",
             }}
           >
             <Lightbulb size={16} />
@@ -268,9 +266,9 @@ export default function InsightPanel() {
                 gap: "6px",
                 padding: "6px 12px",
                 borderRadius: "4px",
-                background: "rgba(168,85,247,0.1)",
-                border: "1px solid rgba(168,85,247,0.2)",
-                color: "#a855f7",
+                background: "rgba(79,142,247,0.1)",
+                border: "1px solid rgba(79,142,247,0.2)",
+                color: "#4f8ef7",
                 fontSize: "12px",
                 fontWeight: 500,
                 cursor: "pointer",

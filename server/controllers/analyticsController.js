@@ -65,6 +65,19 @@ export const getAnalytics = async (req, res) => {
       }
     ]);
 
+    // Scatter data: MonthlyCharges vs churnProbability (sample up to 300)
+    const scatterData = await Prediction.aggregate([
+      { $match: { 'customerFeatures.MonthlyCharges': { $exists: true } } },
+      { $sample: { size: 300 } },
+      {
+        $project: {
+          charges: '$customerFeatures.MonthlyCharges',
+          probability: '$churnProbability',
+          _id: 0
+        }
+      }
+    ]);
+
     res.json({
       totalCustomers,
       churnRate: parseFloat(churnRate),
@@ -75,6 +88,16 @@ export const getAnalytics = async (req, res) => {
         contractData,
         paymentData,
         tenureData,
+        scatterData,
+        pieData: [
+          { name: 'Churned',  value: churnedCount },
+          { name: 'Retained', value: totalCustomers - churnedCount },
+        ],
+        riskData: [
+          { name: 'High',   value: highRisk },
+          { name: 'Medium', value: mediumRisk },
+          { name: 'Low',    value: lowRisk },
+        ],
       },
     });
 

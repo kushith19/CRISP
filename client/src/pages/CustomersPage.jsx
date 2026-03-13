@@ -126,67 +126,85 @@ export default function CustomersPage() {
               </p>
             </div>
 
-            {/* Filters */}
-            <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-              {/* Search */}
-              <div style={{ position: "relative" }}>
-                <Search
-                  size={14}
-                  style={{
-                    position: "absolute",
-                    left: 10,
-                    top: "50%",
-                    transform: "translateY(-50%)",
-                    color: "var(--text-muted)",
-                  }}
-                />
-                <input
-                  type="text"
-                  placeholder="Search by index..."
-                  value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  style={{
-                    paddingLeft: 32,
-                    paddingRight: 12,
-                    paddingTop: 8,
-                    paddingBottom: 8,
-                    borderRadius: "8px",
-                    border: "1px solid var(--border)",
-                    background: "var(--bg-card)",
-                    color: "var(--text-primary)",
-                    fontSize: "13px",
-                    outline: "none",
-                    width: 180,
-                  }}
-                />
-              </div>
+            {/* Actions & Filters */}
+            <div
+              style={{
+                display: "flex",
+                gap: "16px",
+                flexWrap: "wrap",
+                alignItems: "center",
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  gap: "8px",
+                  flexWrap: "wrap",
+                  background: "rgba(255,255,255,0.03)",
+                  padding: "4px",
+                  borderRadius: "10px",
+                  border: "1px solid rgba(255,255,255,0.05)",
+                }}
+              >
+                {/* Search */}
+                <div style={{ position: "relative" }}>
+                  <Search
+                    size={14}
+                    style={{
+                      position: "absolute",
+                      left: 10,
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      color: "var(--text-muted)",
+                    }}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Search by index..."
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                    style={{
+                      paddingLeft: 32,
+                      paddingRight: 12,
+                      paddingTop: 8,
+                      paddingBottom: 8,
+                      borderRadius: "8px",
+                      border: "1px solid var(--border)",
+                      background: "var(--bg-card)",
+                      color: "var(--text-primary)",
+                      fontSize: "13px",
+                      outline: "none",
+                      width: 180,
+                    }}
+                  />
+                </div>
 
-              {/* Risk filter buttons */}
-              {["all", "high", "medium", "low"].map((f) => (
-                <button
-                  key={f}
-                  onClick={() => setRiskFilter(f)}
-                  style={{
-                    padding: "8px 14px",
-                    borderRadius: "8px",
-                    cursor: "pointer",
-                    border: "1px solid var(--border)",
-                    fontSize: "13px",
-                    background:
-                      riskFilter === f
-                        ? "var(--bg-card-hover)"
-                        : "var(--bg-card)",
-                    color:
-                      riskFilter === f
-                        ? "var(--text-primary)"
-                        : "var(--text-muted)",
-                    fontWeight: riskFilter === f ? 500 : 400,
-                    transition: "all 0.15s",
-                  }}
-                >
-                  {f.charAt(0).toUpperCase() + f.slice(1)}
-                </button>
-              ))}
+                {["all", "high", "medium", "low"].map((f) => (
+                  <button
+                    key={f}
+                    onClick={() => setRiskFilter(f)}
+                    style={{
+                      padding: "6px 14px",
+                      borderRadius: "6px",
+                      cursor: "pointer",
+                      border: "none",
+                      fontSize: "13px",
+                      background:
+                        riskFilter === f
+                          ? "rgba(255,255,255,0.1)"
+                          : "transparent",
+                      color:
+                        riskFilter === f
+                          ? "var(--text-primary)"
+                          : "var(--text-muted)",
+                      fontWeight: riskFilter === f ? 500 : 400,
+                      transition: "all 0.15s",
+                    }}
+                  >
+                    {f.charAt(0).toUpperCase() + f.slice(1)}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -204,9 +222,9 @@ export default function CustomersPage() {
               style={{
                 display: "grid",
                 gridTemplateColumns: "80px 1fr 120px 140px 80px 120px 130px",
-                padding: "12px 16px",
-                borderBottom: "1px solid var(--border)",
-                background: "var(--bg-secondary)",
+                padding: "16px",
+                borderBottom: "1px solid rgba(255,255,255,0.05)",
+                background: "rgba(0,0,0,0.2)",
               }}
             >
               {[

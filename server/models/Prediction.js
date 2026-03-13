@@ -4,8 +4,8 @@ const predictionSchema = new mongoose.Schema({
   datasetId: { type: mongoose.Schema.Types.ObjectId, ref: 'Dataset' },
   customerIndex: { type: Number },
   customerFeatures: { type: mongoose.Schema.Types.Mixed, default: {} },
-  prediction: { type: Number },              // 0 or 1
-  churnProbability: { type: Number },        // 0.0 - 1.0
+  prediction: { type: Number },            
+  churnProbability: { type: Number },        
   riskLevel: { type: String, enum: ['High', 'Medium', 'Low'] },
   shapExplanation: [
     {

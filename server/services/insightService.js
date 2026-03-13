@@ -54,7 +54,7 @@ Recommended Actions:
 Be specific with numbers. Be direct. No fluff. 150-200 words total.`;
 };
 
-// Returns a Groq stream — caller is responsible for consuming it
+
 const streamInsight = async (analytics) => {
   const prompt = buildPrompt(analytics);
 
@@ -63,7 +63,7 @@ const streamInsight = async (analytics) => {
     messages: [{ role: "user", content: prompt }],
     temperature: 0.4,
     max_tokens: 600,
-    stream: true, // ← this is the only difference from before
+    stream: true,
   });
 };
 

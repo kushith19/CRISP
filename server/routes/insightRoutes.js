@@ -50,10 +50,8 @@ router.get("/stream", async (req, res) => {
       return;
     }
 
-    // Send analytics context first so frontend has it
     res.write(`data: ${JSON.stringify({ type: "context", analytics })}\n\n`);
 
-    // Open Groq stream
     const stream = await insight.streamInsight(analytics);
     let fullInsight = "";
     let isClientConnected = true;
@@ -72,7 +70,6 @@ router.get("/stream", async (req, res) => {
       }
     }
 
-    // Save completed insight to DB
     if (fullInsight) {
       await Dataset.findOneAndUpdate(
         {},
@@ -82,7 +79,7 @@ router.get("/stream", async (req, res) => {
         },
         { sort: { uploadDate: -1 } }
       );
-      console.log("✅ Insight saved to DB");
+      console.log("Insight saved to DB");
     }
 
     if (isClientConnected) {
